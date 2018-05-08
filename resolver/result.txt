@@ -1,0 +1,26 @@
+
+#        B L A
+#        V L R
+#        B L L
+#
+# V A L  R A A  M B B  V B R  
+# V R M  A B B  V A M  L M R  
+# L M V  A L V  M A L  R M B  
+#
+#        M R R
+#        V V B
+#        A R M
+
+
+#        B L A
+#        V L R
+#        B L L
+#
+# V A V  R A A  A B B  M V M  
+# V R B  A B B  L A M  L M R  
+# L M R  V M L  V A L  R M B  
+#
+#        A V M
+#        R V R
+#        M B R
+
