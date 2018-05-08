@@ -1,3 +1,6 @@
+#operacoes para troca de linhas e coluna entre matrizes
+#usada para facilitar a movimentacao do cubo
+
 def linhaParaLinha(matrizOrigem, matrizDestino, linhaOrigem, linhaDestino, inverter):
     linha = matrizOrigem[linhaOrigem][::-1] if inverter else matrizOrigem[linhaOrigem]
     matrizDestino[linhaDestino] = linha

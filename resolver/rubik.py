@@ -40,15 +40,7 @@ class Rubik():
     ca = Movimento(Faces.costas, SentidoMovimento.antiHorario)
     caDuplo = Movimento(Faces.costas, SentidoMovimento.antiHorario, 2)
 
-    def __init__(
-        self,
-        frente,
-        superior,
-        direita,
-        esquerda,
-        inferior,
-        costas
-    ):
+    def __init__(self, frente, superior, direita, esquerda, inferior, costas):
         #classe que abstrai o cubo magico.
         self.faceFrente = frente
         self.faceSuperior = superior
@@ -71,6 +63,15 @@ class Rubik():
             return Faces.inferior
         elif (self.faceCostas[1][1] == cor):
             return Faces.costas
+
+    def tipoPeca(linha, coluna):
+        #retorna qual o tipo da peca
+        if ((linha == 1) and (coluna == 1)):
+            return Pecas.central
+        elif ((coluna == 1) or (linha == 1)):
+            return Pecas.meio
+        else:
+            return Pecas.lateral
     
     #recebe uma face e retorna a matriz
     def retornaFace(self, face):
@@ -106,16 +107,7 @@ class Rubik():
         print('#')
         for x in range(0, 3):	
             print('#        '+ str(self.faceInferior[x][0].value)+ ' '+ str(self.faceInferior[x][1].value)+ ' '+ str(self.faceInferior[x][2].value))
-        print('')
-
-    def tipoPeca(linha, coluna):
-        #retorna qual o tipo da peca
-        if ((linha == 1) and (coluna == 1)):
-            return Pecas.central
-        elif ((coluna == 1) or (linha == 1)):
-            return Pecas.meio
-        else:
-            return Pecas.lateral
+        print('')    
 
     def mover(self, movimento):
         #identifa a face que sera movimentada
@@ -207,7 +199,7 @@ class Rubik():
                 colunaParaColuna(aux2, self.faceCostas, colOrigem, (0 if colOrigem == 2 else 2), True)
                 colunaParaColuna(aux1, self.faceInferior, (0 if colOrigem == 2 else 2), colOrigem, True)
     
-
+#funcao que traduz uma string para um movimento pre-definido nas consts. de Rubik
 def stringToMov(mov):
     if (mov == "U"):
         return Rubik.sh

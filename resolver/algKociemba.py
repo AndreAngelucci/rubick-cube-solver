@@ -3,7 +3,7 @@ from rubik import *
 from enums import Faces
 
 def createDefinitionString(cube):
-    #string de definicao do cubo que o algotimo entende
+    #string de definicao do cubo que o algoritmo entende
     #padrao: UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
     #identifica a cor dos centros de face:
     colorU = cube.faceSuperior[1][1]
