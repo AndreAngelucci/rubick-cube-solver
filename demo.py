@@ -1,13 +1,17 @@
 from vision.analiseCores import gerarRubikImagem
+from util.funcoesUteis import printLogo
 from rubik.rubik import *
 from rubik.algKociemba import resolver
 
-#gera uma classe tipo Rubik de acordo com a imagem
-#e as configuracoes de coordenadas informada
-#gerarRubikImagem('./fotos/frente.jpg', './coordenadas.conf').representacaoGrafica()
+#gera uma cubo randomico
+printLogo()
 cubo = rubikMontado()
+print '\nCubo montado:'
 cubo.representacaoGrafica()
-cubo.movimentosRandom(5)
+print '\nExecucao de 50 movimentos aleatorios:'
+cubo.movimentosRandom(50)
+print 'Cubo baguncado:'
 cubo.representacaoGrafica()
 resolver(cubo)
+print '\nCubo resolvido:'
 cubo.representacaoGrafica()

@@ -1,3 +1,4 @@
+from random import randint
 import numpy as np
 from util.enums import *
 from util.operacoesMatriz import *
@@ -90,7 +91,6 @@ class Rubik():
         else:
             raise Exception("Face invalida")
 
-
     def representacaoGrafica(self):
         #mostra na tela uma representacao atual do cubo
         print('')
@@ -108,6 +108,19 @@ class Rubik():
         for x in range(0, 3):	
             print('#        '+ str(self.faceInferior[x][0].value)+ ' '+ str(self.faceInferior[x][1].value)+ ' '+ str(self.faceInferior[x][2].value))
         print('')    
+
+    def movimentosRandom(self, qtd):
+        #executa x movimentos aleatorios
+        for i in range(1, qtd):
+            self.mover(
+                [
+                    self.fh, self.fhDuplo, self.fa, self.faDuplo, self.sh, self.shDuplo,
+                    self.sa, self.saDuplo, self.dh, self.dhDuplo, self.da, self.daDuplo,
+                    self.eh, self.ehDuplo, self.ea, self.eaDuplo, self.ih, self.ihDuplo,
+                    self.ia, self.iaDuplo, self.ch, self.chDuplo, self.ca, self.caDuplo
+                ][randint(0, 23)]
+            )    
+        
 
     def mover(self, movimento):
         #identifa a face que sera movimentada
@@ -206,6 +219,36 @@ def matrizCorVazia():
         [Cores.indefinida, Cores.indefinida, Cores.indefinida],
         [Cores.indefinida, Cores.indefinida, Cores.indefinida]
     ]
+
+def rubikMontado():
+    #retorna um rubik montado
+    return Rubik(
+        [
+            [Cores.branco, Cores.branco, Cores.branco],
+            [Cores.branco, Cores.branco, Cores.branco],
+            [Cores.branco, Cores.branco, Cores.branco]
+        ],[
+            [Cores.laranja, Cores.laranja, Cores.laranja],
+            [Cores.laranja, Cores.laranja, Cores.laranja],
+            [Cores.laranja, Cores.laranja, Cores.laranja]
+        ],[
+            [Cores.azul, Cores.azul, Cores.azul],
+            [Cores.azul, Cores.azul, Cores.azul],
+            [Cores.azul, Cores.azul, Cores.azul]
+        ],[
+            [Cores.verde, Cores.verde, Cores.verde],
+            [Cores.verde, Cores.verde, Cores.verde],
+            [Cores.verde, Cores.verde, Cores.verde]
+        ],[
+            [Cores.vermelho, Cores.vermelho, Cores.vermelho],
+            [Cores.vermelho, Cores.vermelho, Cores.vermelho],
+            [Cores.vermelho, Cores.vermelho, Cores.vermelho]
+        ],[
+            [Cores.amarelo, Cores.amarelo, Cores.amarelo],
+            [Cores.amarelo, Cores.amarelo, Cores.amarelo],
+            [Cores.amarelo, Cores.amarelo, Cores.amarelo]
+        ]
+    )
 
 #funcao que traduz uma string para um movimento pre-definido nas consts. de Rubik
 def stringToMov(mov):
