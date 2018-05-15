@@ -1,6 +1,6 @@
 import numpy as np
-from enums import *
-from operacoesMatriz import *
+from util.enums import *
+from util.operacoesMatriz import *
 from copy import copy
 
 #associacao entre movimento e face
@@ -38,19 +38,19 @@ class Rubik():
     ch = Movimento(Faces.costas, SentidoMovimento.horario)
     chDuplo = Movimento(Faces.costas, SentidoMovimento.horario, 2)
     ca = Movimento(Faces.costas, SentidoMovimento.antiHorario)
-    caDuplo = Movimento(Faces.costas, SentidoMovimento.antiHorario, 2)
+    caDuplo = Movimento(Faces.costas, SentidoMovimento.antiHorario, 2)    
 
-    def __init__(self, frente, superior, direita, esquerda, inferior, costas):
-        #classe que abstrai o cubo magico.
-        self.faceFrente = frente
-        self.faceSuperior = superior
-        self.faceDireita = direita
-        self.faceEsquerda = esquerda
-        self.faceInferior = inferior
-        self.faceCostas = costas
+    def __init__(self, frente = [], superior = [], direita = [], esquerda = [], inferior = [], costas = []):
+        #classe que abstrai o cubo magico.        
+        self.faceFrente = frente if frente != [] else matrizCorVazia()
+        self.faceSuperior = superior if superior != [] else matrizCorVazia()
+        self.faceDireita = direita if direita != [] else matrizCorVazia()
+        self.faceEsquerda = esquerda if esquerda != [] else matrizCorVazia()
+        self.faceInferior = inferior if inferior != [] else matrizCorVazia()
+        self.faceCostas = costas if costas != [] else matrizCorVazia()
 
     #retorna qual a face de determinada cor
-    def procuraFace(cor):
+    def procuraFace(self, cor):
         if (self.faceFrente[1][1] == cor):
             return Faces.frente
         elif (self.faceSuperior[1][1] == cor):
@@ -64,7 +64,7 @@ class Rubik():
         elif (self.faceCostas[1][1] == cor):
             return Faces.costas
 
-    def tipoPeca(linha, coluna):
+    def tipoPeca(self, linha, coluna):
         #retorna qual o tipo da peca
         if ((linha == 1) and (coluna == 1)):
             return Pecas.central
@@ -199,6 +199,14 @@ class Rubik():
                 colunaParaColuna(aux2, self.faceCostas, colOrigem, (0 if colOrigem == 2 else 2), True)
                 colunaParaColuna(aux1, self.faceInferior, (0 if colOrigem == 2 else 2), colOrigem, True)
     
+def matrizCorVazia():
+    #retorna uma matriz de cores vazia
+    return [
+        [Cores.indefinida, Cores.indefinida, Cores.indefinida],
+        [Cores.indefinida, Cores.indefinida, Cores.indefinida],
+        [Cores.indefinida, Cores.indefinida, Cores.indefinida]
+    ]
+
 #funcao que traduz uma string para um movimento pre-definido nas consts. de Rubik
 def stringToMov(mov):
     if (mov == "U"):

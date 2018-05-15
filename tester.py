@@ -1,7 +1,6 @@
-from rubik import *
-from enums import *
-from algKociemba import resolver
-from operacoesMatriz import *
+from rubik.rubik import Rubik
+from rubik.algKociemba import resolver
+from util.enums import Cores
 
 cubo = Rubik(
     [
@@ -36,21 +35,9 @@ cubo = Rubik(
     ]
 )
 
-m = [
-    [0, 1, 2],
-    [3, 5, 2],
-    [3, 2, 2]
-]
-m2 = [
-    [4, 4, 4],
-    [3, 5, 2],
-    [3, 2, 2]
-]
-
 print '\nCubo original:'
 cubo.representacaoGrafica()
+#grava o tempo antes de iniciar o calculo.
 resolver(cubo)
 print '\nCubo resolvido:'
 cubo.representacaoGrafica()
-
-#TEM ALGUMA COISA ERRADA NA MOVIMENTAcaO DOS VIZINHOS SUPERIORES

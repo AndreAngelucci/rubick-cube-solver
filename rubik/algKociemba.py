@@ -1,6 +1,7 @@
 from kociemba import solve
 from rubik import *
-from enums import Faces
+from util.enums import Faces
+import time
 
 def createDefinitionString(cube):
     #string de definicao do cubo que o algoritmo entende
@@ -50,10 +51,11 @@ def translateSolution(solutionString):
 def resolver(cube):
     #resolve o cubo e devolve uma lista de movimentos
     definitionString = createDefinitionString(cube)
-    print 'String de definicao: '+ definitionString
+    t1 = time.time() 
     solutionString = solve(definitionString)
-    print 'Solucao            : '+ solutionString
     movArray = translateSolution(solutionString)
+    print ('Solucao encontrada com {} movimentos.\nTempo de execucao: {} mili-segundos.\nSolucao: {}'
+        .format(len(movArray), (time.time() - t1), solutionString))
     for mov in movArray:
         cube.mover(mov)
         
