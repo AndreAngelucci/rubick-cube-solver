@@ -5,12 +5,13 @@ from rubik.algKociemba import resolver
 
 #gera uma cubo randomico
 printLogo()
+print 'Demonstracao da abstracao e resolucao do Cubo de Rubik:'
 cubo = rubikMontado()
-print '\nCubo montado:'
+print '\nPosicionamento inicial do cubo:'
 cubo.representacaoGrafica()
-print '\nExecucao de 50 movimentos aleatorios:'
+print '\nCubo apos a execucao de 50 movimentos randomicos:'
 cubo.movimentosRandom(50)
-print 'Cubo baguncado:'
+print '\nExecucao do algoritimo de solucao:'
 cubo.representacaoGrafica()
 resolver(cubo)
 print '\nCubo resolvido:'

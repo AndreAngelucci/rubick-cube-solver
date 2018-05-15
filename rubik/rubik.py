@@ -95,18 +95,18 @@ class Rubik():
         #mostra na tela uma representacao atual do cubo
         print('')
         for x in range(0, 3):	
-            print('#        '+ str(self.faceSuperior[x][0].value)+ ' '+ str(self.faceSuperior[x][1].value)+ ' '+ str(self.faceSuperior[x][2].value))
-        print('#')
+            print('         '+ str(self.faceSuperior[x][0].value)+ ' '+ str(self.faceSuperior[x][1].value)+ ' '+ str(self.faceSuperior[x][2].value))
+        print(' ')
         for x in range(0, 3):	
-            print('# '+ 
+            print('  '+ 
                 str(self.faceEsquerda[x][0].value)+ ' '+ str(self.faceEsquerda[x][1].value)+ ' '+ str(self.faceEsquerda[x][2].value)+ '  '+
                 str(self.faceFrente[x][0].value)+ ' '+ str(self.faceFrente[x][1].value)+ ' '+ str(self.faceFrente[x][2].value)+ '  '+
                 str(self.faceDireita[x][0].value)+ ' '+ str(self.faceDireita[x][1].value)+ ' '+ str(self.faceDireita[x][2].value)+ '  '+
                 str(self.faceCostas[x][0].value)+ ' '+ str(self.faceCostas[x][1].value)+ ' '+ str(self.faceCostas[x][2].value)+ '  '
             )
-        print('#')
+        print(' ')
         for x in range(0, 3):	
-            print('#        '+ str(self.faceInferior[x][0].value)+ ' '+ str(self.faceInferior[x][1].value)+ ' '+ str(self.faceInferior[x][2].value))
+            print('         '+ str(self.faceInferior[x][0].value)+ ' '+ str(self.faceInferior[x][1].value)+ ' '+ str(self.faceInferior[x][2].value))
         print('')    
 
     def movimentosRandom(self, qtd):
