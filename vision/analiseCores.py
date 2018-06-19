@@ -8,10 +8,18 @@ def detectaCor(bgr):
 	# e retorna sua cor correspondente.
 	percAzul = (bgr[0] * 100) / 255
 	percVerde = (bgr[1] * 100) / 255
-	percVermelho = (bgr[2] * 100) / 255
-	if ((percAzul >= 40) and (percVerde >= 40) and (percVermelho >= 40)):
+	percVermelho = (bgr[2] * 100) / 255	
+	variacao = (bgr[0] + bgr[1] + bgr[2]) / 3
+
+	if (
+		(
+			((variacao - 20) <= bgr[0] <= (variacao + 20)) and
+			((variacao - 20) <= bgr[1] <= (variacao + 20)) and 
+			((variacao - 20) <= bgr[2] <= (variacao + 20))
+		) or ((bgr[0] >= 100) and (bgr[1] >= 100) and (bgr[2] >= 100))
+	):
 		return Cores.branco
-	if ((percVermelho > 60) and (percVermelho > (percAzul + percVerde))):
+	if ((percVermelho > 45) and (percVermelho > (percAzul + percVerde))):
 		return Cores.laranja
 	if ((percVermelho > percAzul) and (percVermelho > percVerde)):
 		return Cores.vermelho
@@ -20,7 +28,7 @@ def detectaCor(bgr):
 	if ((percVerde > percAzul) and (percAzul > percVermelho)):
 		return Cores.verde
 	if ((percAzul > percVerde) and (percVerde > percVermelho)):
-		return Cores.azul	
+		return Cores.azul
 	return Cores.indefinida
 
 def analisaArea(imagem, centro, alcance):
@@ -64,25 +72,28 @@ def strToFace(str):
 		'face_direita', 'face_costas'].index(str)
 	]
 
-def gerarRubikImagem(pathImagem, pathCoordenadas):
-	#recebe o path de uma imagem e gerar um objeto Rubik
+def gerarRubikImagem(pathImagem1, pathImagem2, pathCoordenadas):
+	#recebe o path das imagens e gera um objeto Rubik
 	#atraves da analise das cores nas coordenadas determinadas
 	#no arquivo coordenadas.conf	
-	imCubo = cv2.imread(pathImagem)
 	config = ConfigParser.ConfigParser()
 	config.read(pathCoordenadas)
+	
 	#cubo vazio
 	cubo = Rubik()
+	im1Cubo = cv2.imread(pathImagem1)	
+	im2Cubo = cv2.imread(pathImagem2)
 	for conf in [
 		'face_esquerda', 'face_superior', 'face_frente',
 		'face_inferior', 'face_direita', 'face_costas'
 	]:
 		#alimenta a face corrente
 		faceCorrente = cubo.retornaFace(strToFace(conf))
+		imAnalisar = im1Cubo if (conf in ['face_esquerda', 'face_superior', 'face_frente']) else im2Cubo
 		#captura as coordenadas em todas as faces
 		for (key, value) in (config.items(conf)):
 			cx = int(key[0])
 			cy = int(key[1])
 			coords = value.split(',')
-			faceCorrente[cx][cy] = analisaArea(imCubo, coords, 10)
+			faceCorrente[cx][cy] = analisaArea(imAnalisar, coords, 5)		
 	return cubo

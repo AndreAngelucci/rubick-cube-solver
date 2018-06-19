@@ -54,7 +54,7 @@ def resolver(cube):
     t1 = time.time() 
     solutionString = solve(definitionString)
     movArray = translateSolution(solutionString)
-    print ('Solucao encontrada com {} movimentos.\nTempo de execucao: {} mili-segundos.\nSolucao: {}'
+    print ('Solucao encontrada com {} movimentos.\nTempo de execucao: {} segundos.\nSolucao: {}'
         .format(len(movArray), (time.time() - t1), solutionString))
     for mov in movArray:
         cube.mover(mov)
